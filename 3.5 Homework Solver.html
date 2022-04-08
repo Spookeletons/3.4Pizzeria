@@ -13,17 +13,22 @@
                     <div>
                         <label for="a">A</label>
                         <input type="text" id="a" name="a"
-                               style="width: 100px">
+                               style="width: 75px">
                     </div>
                     <div>
                         <label for="b">B</label>
                         <input type="text" id="b" name="b"
-                               style="width: 100px">
+                               style="width: 75px">
                     </div>
                     <div>
                         <label for="c">C</label>
                         <input type="text" id="c" name="c"
-                               style="width: 100px">
+                               style="width: 75px">
+                    </div>
+                    <div>
+                        <label for="digits">Digits After Decimal</label>
+                        <input type="text" id="digits" name="digits"
+                               style="width: 75px">
                     </div>
                 </div>
                 <button id="calc">Calculate</button>
@@ -36,42 +41,64 @@
     const b = document.getElementById('b');
     const c = document.getElementById('c');
     const ans = document.querySelector('p');
+    const digits = document.getElementById('digits');
     const calculateButton = document.getElementById('calc');
     const clearButton = document.getElementById('clear');
 
     function isValid(numA, numB, numC){
         if(isNaN(numA) || isNaN(numB) || isNaN(numC) || numA === 0){
             return 'syntax';
-        }else if(numB^2 < 4*numA*numC){
+        }else if(Math.pow(numB,2) < 4*numA*numC){
             return 'imaginary';
         }
-    }
+    };
 
     function answer1(A, B, C){
-        return (-B+((B^2)-(4*A*C))^(1/2))/(2*A);
-    }
+        let x = ((-1*B + (Math.pow((Math.pow(B,2) - (4*A*C)), (1/2)))) / (2*A));
+        return x;
+    };
     function answer2(A, B, C){
-        return (-B-((B^2)-(4*A*C))^(1/2))/(2*A);
-    }
+        let x = ((-1*B - (Math.pow((Math.pow(B,2) - (4*A*C)), (1/2)))) / (2*A));
+        return x;
+    };
 
     calculateButton.addEventListener('click', function(e){
-
-        if(isValid(a, b, c)==='syntax'){
-            ans.textContent = "Syntax Error"
-        }else if(isValid(a, b, c)==='imaginary'){
+        let na = +a.value;
+        let nb = +b.value;
+        let nc = +c.value;
+        digit = +digits.value;
+        let error = isValid(na, nb, nc);
+        if(error==='syntax'){
+            ans.textContent = "Syntax Error";
+            return;
+        }else if(error==='imaginary'){
             ans.textContent = "This answer is imaginary, " +
-                "and this calculator can't handle imaginary answers."
+                "and this calculator can't handle imaginary answers.";
+            return;
         }
-        let one = answer1(a, b, c);
-        let two = answer2(a, b, c);
+        let one = answer1(na, nb, nc);
+        let two = answer2(na, nb, nc);
         if(isNaN(one) || isNaN(two)){
             ans.textContent = "Unknown Error";
+            return;
         }
-        ans.textContent = `x = ${one}, ${two}`;
-    })
+        let roundNum = Math.pow(10, digit);
+        let roundOne = Math.round(roundNum*one)/roundNum;
+        let roundTwo = Math.round(roundNum*two)/roundNum;
+        if(roundOne === roundTwo){
+            ans.textContent = `x = ${roundOne}`;
+            return;
+        }
+        ans.textContent = `x = ${roundOne}, ${roundTwo}`;
+        return;
+    });
     clearButton.addEventListener('click', function(e){
-
-    })
+        a.value = "";
+        b.value = "";
+        c.value = "";
+        digits.value = "";
+        ans.textContent = "";
+    });
 </script>
 </body>
 </html>
