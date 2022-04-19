@@ -2,10 +2,18 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Avatar Picker</title>
+    <style>
+        .hidden{
+            display:none;
+        }
+        .avatar{
+            width:200px;
+            height:200px;
+        }
+    </style>
 </head>
-<body>
+<body style="color:ghostwhite; background-color:black">
 <div class="container">
     <div class="content" style="width:800px;">
         <div class="row">
@@ -18,15 +26,23 @@
             <button id="5">Avatar 5</button>
             <button id="6">Avatar 6</button>
 
-            <button id="submit">SUBMIT</button>
             <button id="clear">CLEAR</button>
         </div>
-        <img id="avatar">
+        <div id="avatar" style="margin:100px;">
+            <img class='avatar' id="default" src="https://sbcf.fr/wp-content/uploads/2018/03/sbcf-default-avatar.png">
+            <img class='avatar hidden' id="first" src="https://upload.wikimedia.org/wikipedia/en/thumb/9/98/TheDoorsTheDoorsalbumcover.jpg/220px-TheDoorsTheDoorsalbumcover.jpg">
+            <img class='avatar hidden' id="second" src="https://upload.wikimedia.org/wikipedia/en/f/fc/AlbumStrangeDays.jpg">
+            <img class='avatar hidden' id="third" src="https://upload.wikimedia.org/wikipedia/en/thumb/d/d3/The_Doors_-_Waiting_for_the_Sun.jpg/220px-The_Doors_-_Waiting_for_the_Sun.jpg">
+            <img class='avatar hidden' id="fourth" src="https://upload.wikimedia.org/wikipedia/en/c/ce/The_Doors_-_The_Soft_Parade.jpg">
+            <img class='avatar hidden' id="fifth" src="data:image/jpeg;base64,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">
+            <img class='avatar hidden' id="sixth" src="https://upload.wikimedia.org/wikipedia/en/4/41/The_Doors_-_L.A._Woman.jpg">
+        </div>
+
     </div>
 </div>
 <script>
-    const avatar = document.querySelector('avatar');
 
+    const defaultAvatar = document.getElementById('default');
     const avatar1 = document.getElementById(1);
     const avatar2 = document.getElementById(2);
     const avatar3 = document.getElementById(3);
@@ -34,11 +50,79 @@
     const avatar5 = document.getElementById(5);
     const avatar6 = document.getElementById(6);
 
+    const first = document.getElementById('first');
+    const second = document.getElementById('second');
+    const third = document.getElementById('third');
+    const fourth = document.getElementById('fourth');
+    const fifth = document.getElementById('fifth');
+    const sixth = document.getElementById('sixth');
+
     const submitButton = document.getElementById('submit');
     const clearButton = document.getElementById('clear');
 
     avatar1.addEventListener('click', function(e){
-        avatar.
+        first.classList.remove('hidden');
+        second.classList.add('hidden');
+        third.classList.add('hidden');
+        fourth.classList.add('hidden');
+        fifth.classList.add('hidden');
+        sixth.classList.add('hidden');
+        defaultAvatar.classList.add('hidden');
+    })
+    avatar2.addEventListener('click', function(e){
+        first.classList.add('hidden');
+        second.classList.remove('hidden');
+        third.classList.add('hidden');
+        fourth.classList.add('hidden');
+        fifth.classList.add('hidden');
+        sixth.classList.add('hidden');
+        defaultAvatar.classList.add('hidden');
+    })
+    avatar3.addEventListener('click', function(e){
+        first.classList.add('hidden');
+        second.classList.add('hidden');
+        third.classList.remove('hidden');
+        fourth.classList.add('hidden');
+        fifth.classList.add('hidden');
+        sixth.classList.add('hidden');
+        defaultAvatar.classList.add('hidden');
+    })
+    avatar4.addEventListener('click', function(e){
+        first.classList.add('hidden');
+        second.classList.add('hidden');
+        third.classList.add('hidden');
+        fourth.classList.remove('hidden');
+        fifth.classList.add('hidden');
+        sixth.classList.add('hidden');
+        defaultAvatar.classList.add('hidden');
+    })
+    avatar5.addEventListener('click', function(e){
+        first.classList.add('hidden');
+        second.classList.add('hidden');
+        third.classList.add('hidden');
+        fourth.classList.add('hidden');
+        fifth.classList.remove('hidden');
+        sixth.classList.add('hidden');
+        defaultAvatar.classList.add('hidden');
+    })
+    avatar6.addEventListener('click', function(e){
+        first.classList.add('hidden');
+        second.classList.add('hidden');
+        third.classList.add('hidden');
+        fourth.classList.add('hidden');
+        fifth.classList.add('hidden');
+        sixth.classList.remove('hidden');
+        defaultAvatar.classList.add('hidden');
+    })
+
+    clearButton.addEventListener('click', function(e){
+        first.classList.add('hidden');
+        second.classList.add('hidden');
+        third.classList.add('hidden');
+        fourth.classList.add('hidden');
+        fifth.classList.add('hidden');
+        sixth.classList.add('hidden');
+        defaultAvatar.classList.remove('hidden');
     })
 </script>
 </body>
