@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>Insert Practice</title>
+
+</head>
+<body>
+<div class="container">
+    <div class="content">
+        <h3>What is this?</h3>
+        <h4>I do not want this.</h4>
+    </div>
+</div>
+<script>
+    const content = document.querySelector('.content');
+    //replace contents of a tag using innerHTML
+    content.innerHTML = '<h1>I like playing chess</h1>' +
+        '<h4>I like eating bowls (burritos but without tortillas)</h4>' +
+        '<h4>I like listening to classic rock and some other music</h4>';
+
+    //add a new element in addition to existing ones
+    const zelda = document.createElement('h1');
+    zelda.innerHTML = 'I love Zelda';
+    content.appendChild(zelda);
+    const cat = document.createElement('h3');
+    cat.innerHTML = 'I love cats!!!';
+    content.appendChild(cat);
+    const dog = document.createElement('h4');
+    dog.innerHTML = 'Dogs are good, but not as good as cats';
+    content.appendChild(dog);
+    const message = document.createElement('h1');
+    message.innerHTML = 'I cannot come up with anything else';
+    content.appendChild(message);
+</script>
+</body>
+</html>
