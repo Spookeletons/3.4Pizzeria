@@ -4,25 +4,25 @@
     <meta charset="UTF-8">
     <title>Greeting Users</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .hidden {
-            display:none;
-        }
-    </style>
 </head>
 <body>
   <div class="container">
       <div class="content">
           <div>
-              <label for="first">First Name/Title</label>
-              <input type="text" id="first" name="first_name">
+              <label for="first">First Name or Title</label>
+              <input type="text" id="first" name="first_name"
+              placeholder="John">
           </div>
           <div>
               <label for="last">Last Name</label>
-              <input type="text" id="last" name="last_name">
+              <input type="text" id="last" name="last_name"
+              placeholder="Smith">
           </div>
-          <button id="submitButton">Say Hello</button>
-          <p class="hidden">
+          <div class="row">
+              <button id="submitButton">Say Hello</button>
+              <button id="clearButton">CLEAR ENTRIES</button>
+          </div>
+          <p>
           </p>
       </div>
   </div>
@@ -30,23 +30,21 @@
     const content = document.querySelector('.content');
     const firstName = document.getElementById('first');
     const lastName = document.getElementById('last');
-    const names = document.getElementById('content2');
-    const submit = document.querySelector('p');
+    const names = document.querySelector('p');
+    const submit = document.getElementById('submitButton');
+    const clear = document.getElementById('clearButton');
 
     submit.addEventListener('click', function(e){
-        /*
-
         let first = firstName.value;
         let last = lastName.value;
-        if(names.length()>0){
-            names.classList.remove('hidden');
-        }
         const full = document.createElement('p');
-        full.innerHTML = `something`;
+        full.innerHTML = `${first} ${last}`;
         names.insertAdjacentElement('afterbegin', full);
-
-         */
-        content.innerHTML = '<h1>IT WORKED!</h1>'
+    })
+    clear.addEventListener('click', function(e){
+        firstName.value = '';
+        lastName.value = '';
+        names.innerHTML = '';
     })
 </script>
 </body>
