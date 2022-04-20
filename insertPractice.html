@@ -16,7 +16,7 @@
 <script>
     const content = document.querySelector('.content');
     //replace contents of a tag using innerHTML
-    content.innerHTML = '<h1>I like playing chess</h1>' +
+    content.innerHTML = '<h1 class="gone">I like playing chess</h1>' +
         '<h4>I like eating bowls (burritos but without tortillas)</h4>' +
         '<h4>I like listening to classic rock and some other music</h4>';
 
@@ -33,6 +33,25 @@
     const message = document.createElement('h1');
     message.innerHTML = 'I cannot come up with anything else';
     content.appendChild(message);
+
+    //put this at the top in addition to existing elements
+    const food = document.createElement('h1');
+    food.innerHTML = 'I love pizza';
+    content.insertAdjacentElement('afterend', food);
+
+    //removing elements
+    const unwantedElement = document.querySelector('h4');
+    unwantedElement.remove();
+
+    //replace contents of an html tag
+    /*
+    content.innerHTML = '<h1 id="lose">I love Zelda</h1>'
+    const unwantedElement2 = document.querySelector('#lose');
+    */
+    const unwantedElement2 = document.querySelector('.gone');
+    unwantedElement2.remove();
+
+    //to remove all elements in a tag, use innerHTML to reset the parent to an empty string
 </script>
 </body>
 </html>
