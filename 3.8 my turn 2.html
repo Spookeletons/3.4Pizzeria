@@ -2,9 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Grocery List</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
+<div class="container">
+    <div class="content">
+        <div class="row">
+            <label for="item">Item</label>
+            <input type="text" id="item" name="item">
+        </div>
+        <button id="submitItem">Add Item</button>
+        <ul></ul>
+    </div>
+</div>
+<script>
+    const content = document.querySelector('.content');
+    const list = document.querySelector('ul');
+    const item = document.getElementById('item');
+    const button = document.getElementById('submitItem');
+    function addItem(){
+        let newItem = item.value;
+        const element = document.createElement('li');
+        element.innerHTML = `${newItem}`;
+        list.appendChild(element);
+        item.value = "";
+        element.addEventListener('click', function(e){
+            element.remove();
+        })
+    }
+    button.addEventListener('click', addItem);
+</script>
 </body>
 </html>
